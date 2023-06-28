@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    //Setting paramaters
     private GameObject go;
     private GameObject bg;
 
@@ -19,8 +21,9 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private AudioSource jumpSoundEffect;
     //[SerializeField] private AudioSource landSoundEffect;
+    [SerializeField] private AudioSource collectSoundEffect;
 
-
+    //On start set paramaters and get objects
     void Start()
     {
         rigi = GetComponent<Rigidbody>();
@@ -29,6 +32,9 @@ public class PlayerMovement : MonoBehaviour
         go.SetActive(false);
     }
 
+    //Testing game is playing and initalising change of music played then restart level
+    //Get force
+    //Jump paramaters once "Space" is get key down
     void Update()
     {
         if (!GameManager.playing)
@@ -60,12 +66,14 @@ public class PlayerMovement : MonoBehaviour
         transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * mouseSpeed);
 
     }
+    //Once game over initalising restart level
     private void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-
+    //Playing test, if not playing initilasing game over
+    //Testing force applied
     private void FixedUpdate()
     {
         if (!GameManager.playing)
@@ -82,6 +90,9 @@ public class PlayerMovement : MonoBehaviour
         // topSpeed = rigi.velocity.magnitude;
     }
 
+
+    //Testing player on collision to floor
+    //Proposed landing sound effect
     private void OnCollisionEnter(Collision collision)
     {
         foreach (ContactPoint x in collision.contacts)
@@ -94,11 +105,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
+    //Collectables & proposed collectbles
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag != "Jump")
         {
             Destroy(other.gameObject);
+            collectSoundEffect.Play();
         }
 
         if (other.tag == "Jump")

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+
+//Dialog paramaters
 public class DialogManager : MonoBehaviour
 {
 
@@ -12,15 +14,19 @@ public class DialogManager : MonoBehaviour
     [SerializeField]
     private Transform _dialogGUI;
 
+    [SerializeField]
+    private DialogText currentDialog;
+
+
     private void Start()
     {
         Dialog dialog = _dialogGUI.GetComponent<Dialog>();
 
-        DialogData data = new DialogData();
+        /*DialogData data = new DialogData();
         data.name = "Test Name";
-        data.body = "Hello, my name is Test Name";
+        data.body = "Hello, my name is Test Name";*/
 
-        dialog.DisplayDialog(data);
+        dialog.DisplayDialog(currentDialog.text);
     }
 
 

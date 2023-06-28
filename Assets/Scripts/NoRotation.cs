@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class NoRotation : MonoBehaviour
 {
-    public GameObject player;
+    //NOT USED
+
+
+    /*public GameObject player;
     private Vector3 offset;
 
     
@@ -20,5 +23,5 @@ public class NoRotation : MonoBehaviour
 
         transform.Rotate(Vector3.up);
 
-    }
+    }*/
 }
